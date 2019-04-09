@@ -16,12 +16,13 @@ main_header();
 						<h3 align="center">| <?php echo $_SESSION['admin_name']; ?> Dashboard |</h3>
 					</div>
 				</section>
-      			<br><br>
+      			<br>
+                You are an <b>Admin.</b><br>
  				<div class="row">
 					<dl>
-						<dt> You can: </dt>
+						<dt><br> You can: </dt>
 						<dd>Change your password by clicking on <b><i>Edit profile</i></b> link above.</dd>
-						<dd>Register Supervisors by clicking on <b><i>Register</i></b> link above.</dd>
+						<dd>Register Supervisors by clicking on <b><i>Register Supervisor</i></b> link above.</dd>
 						<dd>Download reports clicking on the <b><i>Download</i></b> button above.</dd>
 					</dl>
     			</div>

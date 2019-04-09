@@ -55,7 +55,7 @@ main_header();
                             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" role="form" class="contactForm" enctype="multipart/form-data">
                                 <label style="color: red;"><b>*Select file to upload:</b></label><br>
                                 <input class="form-control" name="file" type="file" required accept="application/pdf"/><br>
-                                <div class="text-center"><input type="submit" name="upload" style="color: white; background-color: blue;" value="Upload Report"/>
+                                <div class="text-center"><input type="submit" name="upload" style="color: white; background-color: blue;" value="Upload Slip"/>
                                 </div>
                             </form>
                         </div>

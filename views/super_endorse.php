@@ -64,25 +64,31 @@ $stud_status = false;
                     $stud_status = true;
                     ?><table><col width="0.1%"><col width="0.9%"><?php
                     foreach ($student_details as $index) {
-                        $full_name = $index['stud_lname'] . ' ' . $index['stud_fname'] . ' ' . $index['stud_mname']; ?>
-                        <tr>
-                            <td>Name:</td>
-                            <td><b><?php echo $full_name; ?></b></td>
-                        </tr>
-                        <tr>
-                            <td>Level:</td>
-                            <td><?php echo $index['stud_level']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>IT Commencement Date:</td>
-                            <td><?php echo $index['it_date']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>IT Duration:</td>
-                            <td><?php echo $index['stud_it_duration'] . ' Month(s)'; ?></td>
-                        </tr>
-                    <?php }
-                    echo '</table>';
+                        if ($index['org_id'] == $_SESSION['org_id']) {
+                            $full_name = $index['stud_lname'] . ' ' . $index['stud_fname'] . ' ' . $index['stud_mname']; ?>
+                            <tr>
+                                <td>Name:</td>
+                                <td><b><?php echo $full_name; ?></b></td>
+                            </tr>
+                            <tr>
+                                <td>Level:</td>
+                                <td><?php echo $index['stud_level']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>IT Commencement Date:</td>
+                                <td><?php echo $index['it_date']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>IT Duration:</td>
+                                <td><?php echo $index['stud_it_duration'] . ' Month(s)'; ?></td>
+                            </tr>
+                            <?php
+                            echo '</table>';
+                        } else { ?>
+                            <script type="text/javascript"> alert('Student not registered under your organization!');
+                                window.location = "super_endorse.php"; </script><?php
+                        }
+                    }
                 }
                 //processing report details
                 echo '<p style="color:#ffffff; padding-left:10px; background-color:#900000;">Daily Report Details</p>';

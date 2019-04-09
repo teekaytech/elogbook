@@ -100,7 +100,7 @@ class Admin {
         try
         {
             $this->stmt = $this->handle->prepare("SELECT * FROM admin ");
-            $this->stmt->execute();
+                $this->stmt->execute();
             $user = $this->stmt->fetchAll();
             return $user;
         }
@@ -140,7 +140,7 @@ class Admin {
     }
 
 
-    public function fetch_supervisors($s_id) {
+    public function fetch_supervisors() {
         try
         {
             $this->stmt = $this->handle->prepare("SELECT * FROM supervisor ");
@@ -184,6 +184,95 @@ class Admin {
             $this->stmt->execute(array('desig' => $desig, 'pswd'=>$pswd, 'ad_id' => $_SESSION['main_id']));
             return true;
 
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
+    public function fetch_department() {
+        try
+        {
+            $this->stmt = $this->handle->prepare("SELECT * FROM department");
+            $this->stmt->execute();
+            $user = $this->stmt->fetchAll();
+            return $user;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
+    public function fetch_student($deptId, $msession) {
+        try
+        {
+            $this->stmt = $this->handle->prepare("SELECT * FROM student WHERE `session`=:msession AND `DEPARTMENTdept_id`=:dept");
+            $this->stmt->execute(array('msession'=>$msession, 'dept'=>$deptId));
+            $user = $this->stmt->fetchAll();
+            return $user;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
+    public function fetch_department_name($id) {
+        try
+        {
+            $this->stmt = $this->handle->prepare("SELECT * FROM department WHERE `dept_id`=:id");
+            $this->stmt->execute(array('id'=>$id));
+            $user = $this->stmt->fetchAll();
+            return $user;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
+    public function fetch_specific_organization($id) {
+        try
+        {
+            $this->stmt = $this->handle->prepare("SELECT * FROM organization WHERE org_id = :id");
+            $this->stmt->execute(array('id'=>$id));
+            $user = $this->stmt->fetchAll();
+            return $user;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
+    public function fetch_spec_supervisors($session) {
+        try
+        {
+            $this->stmt = $this->handle->prepare("SELECT DISTINCT supervisor.`super_id`, supervisor.`super_lname`, supervisor.`super_fname`, supervisor.`super_mname`,
+    supervisor.`super_status`, `supervisor`.`phone_no`, `supervisor`.`org_id` FROM supervisor JOIN student WHERE student.`SUPERVISORsuper_id` = supervisor.`super_id` AND student.`session` = :session ");
+            $this->stmt->execute(array('session'=>$session));
+            $user = $this->stmt->fetchAll();
+            return $user;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+    
+    public function fetch_super_student($session, $status) {
+        try
+        {
+            $this->stmt = $this->handle->prepare("SELECT DISTINCT supervisor.`super_id`, supervisor.`super_lname`,
+            supervisor.`super_fname`, supervisor.`super_mname`, supervisor.`super_status`, supervisor.`org_id`, student.`stud_id`,
+            `student`.`stud_lname`, student.`stud_fname`, student.`stud_mname`, `student`.`DEPARTMENTdept_id`, `student`.`org_id` AS studOrg,
+            `student`.`stud_it_duration` FROM supervisor JOIN student WHERE student.`SUPERVISORsuper_id` = supervisor.`super_id`
+            AND student.`session` = :session AND supervisor.`super_status`=:status");
+            $this->stmt->execute(array('session'=>$session, 'status'=>$status));
+            $user = $this->stmt->fetchAll();
+            return $user;
         }
         catch(PDOException $e)
         {

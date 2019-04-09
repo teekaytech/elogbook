@@ -147,17 +147,13 @@ class student {
         }
     }
     
-    public function fetch_student_passport($matric) {
+    public function fetch_student_passport($id) {
         try
         {
-            $this->stmt = $this->handle->prepare("SELECT * FROM stud_passport WHERE `stud_id`=:msession");
-            $this->stmt->execute(array('msession'=>$matric));
+            $this->stmt = $this->handle->prepare("SELECT * FROM stud_passport WHERE stud_id=:id");
+            $this->stmt->execute(array('id'=>$id));
             $user = $this->stmt->fetchAll();
-            $address = '';
-            foreach ($user as $item) {
-                $address = $item['passport'];
-            }
-            return $address;
+            return $user;
         }
         catch(PDOException $e) { echo $e->getMessage(); }
     }

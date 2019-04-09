@@ -166,117 +166,255 @@ if (isset($_POST['super_submit'])) {
 </head>
 <body>
 <div id="wrapper">
-    <center>
-
-        <section id="content">
-            <div class="container">
-                <section id="inner-headline">
-                    <div class="container">
-                        <h3 align="center">| Supervisors Registration Page |</h3>
-                    </div>
-                </section>
-                <?php if ((isset($_SESSION['admin_id'])) && (isset($_SESSION['key']))) {
-                $ad_id = $_SESSION['main_id']; ?>
-                <br>
+    <section id="content">
+        <div class="container">
+            <section id="inner-headline">
+                <div class="container" style="align-items: center;">
+                    <h3 align="center">| Supervisors Registration Page |</h3>
+                </div>
+            </section>
+            <?php if ((isset($_SESSION['admin_id'])) && (isset($_SESSION['key']))) {
+            $ad_id = $_SESSION['main_id']; ?><br>
+            <center>
                 <p>
-                <span>Dear <b style="color: blue;"><?php echo $_SESSION['admin_name']; ?>,</b> Welcome to Supervisors
+                    <span>Dear <b style="color: blue;"><?php echo $_SESSION['admin_name']; ?>,</b> Welcome to Supervisors
                     Registration page!</span>
                 </p>
-
-                <div class="row">
+                <div style="background-color: whitesmoke;">
+                <p style="color: red;">Kindly supply the necessary information. All fields with (*) are compulsory.</p>
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" role="form" class="contactForm"
+                     name="myform" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <div class="form-group">
                     <div>
-                        <p style="color: red;">Kindly supply the necessary information. All fields are compulsory.</p>
-                        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" role="form" class="contactForm"
-                              name="myform" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <input class="form-control" name="s_id" id="text" placeholder="Supervisor Id"
-                                       data-msg="Please enter your matric nubmer" required=""/>
-                                <div class="validation"></div>
-                                <br>
-                                <input class="form-control" name="surname" id="text" placeholder="Surname"
-                                       data-msg="Please enter your surname" required=""/>
-                                <div class="validation"></div>
-                                <br>
-                                <input class="form-control" name="fname" id="text" placeholder="First name"
-                                       data-msg="Please enter your other name" required=""/>
-                                <div class="validation"></div>
-                                <br>
-                                <input class="form-control" name="oname" id="text" placeholder="Other name"
-                                       data-msg="Please enter your first name" required=""/>
-                                <div class="validation"></div>
-                                <br>
-                                <input class="form-control" name="uname" id="text" placeholder="Username" required=""/>
-                                <div class="validation"></div>
-                                <br>
-                                <input class="form-control" name="email" id="email" placeholder="Your Email"
-                                       type="email"
-                                       required=""/>
-                                <div class="validation"></div>
-                                <br>
-                                <input class="form-control" name="password" type="password" placeholder="Password"
-                                       data-rule="minlen:8" data-msg="Please enter at least 8 characters" required=""/>
-                                <div class="validation"></div>
-                                <br>
-                                <input class="form-control" name="phone_no" id="text" placeholder="Your phone number"
-                                       data-rule="minlen:11" required=""/><br>
-                                <p>Select Category:&nbsp&nbsp
-                                    <input type="radio" name="rad" value="0" onclick="doClick(this)">&nbspIndustry-based
-                                    &nbsp&nbsp&nbsp&nbsp
-                                    <input type="radio" name="rad" value="1" onclick="doClick(this)">&nbspInstitution-based
-                                </p>
-                            </div>
-                            <div id="institution" style="display:none;">
-                                <input type="text" value="University of Ibadan" readonly="" class="form-control">
-                            </div>
-                            <div id="industry" style="display:none;">
-                                <select name="myDrop" class="form-control" id="myDrop">
-                                    <option value="">--Select Organization Name--</option>
-                                    <?php
-                                    try {
-                                        $ind = $admin->fetch_organization();
-                                        foreach ($ind as $k => $v) { ?>
-                                            <option value="<?php echo $v['org_id']; ?>"><?php echo $v['org_name']; ?></option> <?php
-                                        }
-                                    } catch (Exception $e) {
-                                        echo "Error: " . $e->getMessage();
-                                    }
-                                    ?>
-                                    <option value="0">Others</option>
-                                </select><br>
-                            </div>
-                            <div id="others" style="display:none;">
-                                <input type="text" name="org_name" placeholder="Name of Organization"
-                                       class="form-control"><br>
-                                <input type="text" name="org_add" placeholder="Address of Organization"
-                                       class="form-control"><br>
-                                <input type="text" name="org_city" placeholder="Organization City" class="form-control"><br>
-                                <input type="text" name="org_state" placeholder="Organization State"
-                                       class="form-control"><br>
-                                <input type="text" name="org_phone" placeholder="Organization Phone"
-                                       class="form-control">
-                            </div>
-                            <div class="validation"></div>
-                            <label for="super_sign" style="color: red;">Select your signature</label>
-                            <input class="form-control" name="file" value="signature here..." type="file" required/>
-                            <div class="validation"></div>
-                            <br>
-                            <input class="form-control" name="admin_id" type="text" required readonly
-                                   value='Admin ID: <?php echo "$ad_id"; ?>'/>
+                        <label for="itext">* Supervisor ID </label>
+                        <input class="form-control" name="s_id" id="itext" size="20" placeholder="Enter Supervisor ID" required/>
+                        <span id="iInfo" style="display: none; " class="fa label-info"></span>
                     </div>
+                    <div>
+                        <label for="stext">* Surname </label>
+                        <input class="form-control" name="surname" id="stext" size="20" placeholder="Enter Surname" required/>
+                        <span id="sInfo" style="display: none; " class="fa label-info"></span>
+                    </div>
+                    <div>
+                        <label for="ftext">* First Name </label>
+                        <input class="form-control" name="fname" id="ftext" size="20" placeholder="Enter First name" required/>
+                        <span id="fInfo" style="display: none; " class="fa label-info"></span>
+                    </div>
+                    <label for="otext">Other names</label>
+                    <input class="form-control" name="oname" id="otext" size="20" placeholder="Enter Other name"/>
+                    <div>
+                        <label for="utext">* Username </label>
+                        <input class="form-control" name="uname" id="utext" size="15" placeholder="Enter Username" required=""/>
+                        <span id="uInfo" style="display: none; " class="fa label-info"></span>
+                    </div>
+                    <div>
+                        <label for="email">* Email </label>
+                        <input class="form-control" name="email" id="email" size="60" placeholder="E.g olaosebikan@ymail.com"
+                           type="email" required=""/>
+                        <span id="eInfo" style="display: none; " class="fa label-info"></span>
+                    </div>
+                    <div>
+                        <label for="password">* Enter Password </label>
+                        <input class="form-control" name="password" type="password" placeholder="Enter Password"
+                               id="password" required/>
+                        <span id="pInfo" style="display: none; " class="fa label-info"></span>
+                    </div>
+                    <div>
+                        <label for="password_two">* Re-enter Password </label>
+                        <input class="form-control" name="password_two" type="password" placeholder="Enter Password"
+                               data-rule="minlen:8" id="password_two" required/><span id="ptInfo" style="display: none; " class="fa label-info"></span>
+                    </div>
+                    <div>
+                        <label for="ptext">* Phone Number </label>
+                        <input class="form-control" name="phone_no" id="ptext" size="11" placeholder="E.g 080XXXXXXXX"
+                               data-rule="minlen:11" required=""/>
+                        <span id="passInfo" style="display: none; " class="fa label-info"></span>
+                    </div>
+                    <p>Select Category:&nbsp&nbsp
+                        <input type="radio" name="rad" required value="0" onclick="doClick(this)">&nbspIndustry-based
+                        &nbsp&nbsp&nbsp&nbsp
+                        <input type="radio" name="rad" value="1" required onclick="doClick(this)">&nbspInstitution-based
+                    </p>
+                    <div id="institution" style="display:none;">
+                        <input type="text" value="University of Ibadan" readonly="" class="form-control">
+                    </div>
+                    <div id="industry" style="display:none;">
+                        <select name="myDrop" class="form-control" id="myDrop">
+                            <option value="">--Select Organization Name--</option>
+                            <?php
+                            try {
+                                $ind = $admin->fetch_organization();
+                                foreach ($ind as $k => $v) { ?>
+                                    <option value="<?php echo $v['org_id']; ?>"><?php echo $v['org_name']; ?></option> <?php
+                                }
+                            } catch (Exception $e) {
+                                echo "Error: " . $e->getMessage();
+                                    } ?>
+                            <option value="0">Others</option>
+                        </select><br>
+                    </div>
+                    <div id="others" style="display:none;">
+                        <input type="text" name="org_name" placeholder="Name of Organization"
+                               class="form-control"><br>
+                        <input type="text" name="org_add" placeholder="Address of Organization"
+                               class="form-control"><br>
+                        <input type="text" name="org_city" placeholder="Organization City" class="form-control"><br>
+                        <input type="text" name="org_state" placeholder="Organization State"
+                               class="form-control"><br>
+                        <input type="text" name="org_phone" placeholder="Organization Phone"
+                               class="form-control">
+                    </div>
+                    <div class="validation"></div>
+                    <label for="super_sign" style="color: red;">* Select signature</label>
+                    <input class="form-control" name="file" value="signature here..." type="file" required/>
+                    <div class="validation"></div><br>
+                        <input class="form-control" name="admin_id" type="text" required readonly
+                               value='Admin ID: <?php echo "$ad_id"; ?>'/>
                     <br>
-                    <div class="text-center">
-                        <button type="submit" name="super_submit" class="btn btn-theme" style="color: red;">Register
-                            Supervisor
-                        </button>
-                    </div>
+                    <button type="submit" name="super_submit" class="btn btn-primary">Register Supervisor </button>
                     </form>
                 </div>
-            </div>
-        </section>
-    </center>
+            </center>
+        </div>
+    </section>
 </div>
 <?php } ?>
 <footer><?php footer(); ?></footer>
+<script>
+    var userMail = document.getElementById('email');
+    userMail.addEventListener('focusout', function () {
+        var outputMessage = document.getElementById('eInfo');
+        var re = /\S+@\S+\.\S+/;
+        if (userMail.value === '') {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Email cannot be empty!';
+        }
+        else if (! re.test(userMail.value)) {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Invalid Email Format...try again!';
+            userMail.value = '';
+        }
+        else {
+            outputMessage.innerText = '';
+        }
+    });
+    
+    var username = document.getElementById('utext');
+    username.addEventListener('focusout', function () {
+        var outputMessage = document.getElementById('uInfo');
+        if (username.value === '') {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Username cannot be empty!';
+        }
+        else if (username.value.length > 20 || username.value.length < 8) {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Username cannot be less than 8 or more than 20 characters!';
+            username.value = '';
+        }
+        else {
+            outputMessage.innerText = '';
+        }
+    });
+    
+    var firstname = document.getElementById('ftext');
+    firstname.addEventListener('focusout', function () {
+        var outputMessage = document.getElementById('fInfo');
+        if (firstname.value.length > 20) {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Firstname cannot be more than 20 characters!';
+            firstname.value = '';
+        } else if (firstname.value < 1) {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Firstname cannot be empty!';
+        }
+        else {
+            outputMessage.innerText = '';
+        }
+    });
+    
+    var uSurname = document.getElementById('stext');
+    uSurname.addEventListener('focusout', function () {
+        var outputMessage = document.getElementById('sInfo');
+        if (uSurname.value.length > 20) {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Surname cannot be more than 20 characters!';
+            uSurname.value = '';
+        } else if (uSurname.value < 1) {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Surname cannot be empty!';
+        }
+        else {
+            outputMessage.innerText = '';
+        }
+    });
+
+   var userId = document.getElementById('itext');
+   userId.addEventListener('focusout', function () {
+       var outputMessage = document.getElementById('iInfo');
+       if (userId.value === '') {
+           outputMessage.style.display = 'inline';
+           outputMessage.innerText = 'Supervisor ID cannot be empty!';
+       }
+       else if (userId.value.length > 20) {
+           outputMessage.style.display = 'inline';
+           outputMessage.innerText = 'Supervisor ID cannot be more than 20 characters!';
+           userId.value = '';
+       }
+       else {
+           outputMessage.innerText = '';
+       }
+   });
+    
+    var passWord = document.getElementById('password');
+    passWord.addEventListener('focusout', function () {
+        var outputMessage = document.getElementById('pInfo');
+        if (passWord.value === '') {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Password cannot be empty!';
+        }
+        else if (passWord.value.length < 8) {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Password length must be 8 or more characters';
+            passWord.value = '';
+        } else {
+            outputMessage.innerText = '';
+        }
+    });
+    var passWordTwo = document.getElementById('password_two');
+    passWordTwo.addEventListener("focusout", function () {
+        var outputMessage = document.getElementById('ptInfo');
+        if (passWordTwo.value === '') {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Confirm Password cannot be empty!';
+        }
+        else if (passWordTwo.value != passWord.value) {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Confirm password is not correct!';
+            // passWordTwo.value = '';
+            passWordTwo.focus();
+        } else {
+            outputMessage.innerText = '';
+        }
+    });
+
+    var phone = document.getElementById('ptext');
+    phone.addEventListener("focusout", function () {
+        var outputMessage = document.getElementById('passInfo');
+        if (phone.value === '') {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Phone number cannot be empty!';
+        }
+        else if (phone.value.length !== 11 || isNumeric(phone.value)===false) {
+            outputMessage.style.display = 'inline';
+            outputMessage.innerText = 'Phone number format should be 080xxxxxxxx (11 digits)!';
+            phone.value = '';
+            phone.focus();
+        } else {
+            outputMessage.innerText = '';
+        }
+    });
+    
+</script>
 </body>
 
 </html>

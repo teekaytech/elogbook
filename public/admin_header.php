@@ -33,7 +33,7 @@ function main_header() { ?>
             </div>
             <div class="navbar-collapse collapse ">
                 <ul class="nav navbar-nav">
-                    <li><a href="register_super.php">Register</a></li>
+                    <li><a href="register_super.php">Register Supervisor</a></li>
                     <li><a href="../views/admin_profile.php">Edit Profile</a></li>
                     <li><a href="../views/admin_dwld.php">Download</a></li>
                     <li><a href="../logout.php">Logout</a></li>

@@ -104,29 +104,29 @@
                                                 <i class="fa fa-check fa-3x"></i>
                                             </div>
                                             <p>
-                                                Some stories here...
+                                                Real-time reporting...
                                             </p>
 
                                         </div>
                                         <div class="box-bottom">
-                                            <a href="features.php">Learn more</a>
+                                            <a href="views/features.php">Learn more</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="box">
                                         <div class="box-gray aligncenter">
-                                            <h4>Latest Information</h4>
+                                            <h4>About ITCC</h4>
                                             <div class="icon">
                                                 <i class="fa fa-info fa-3x"></i>
                                             </div>
                                             <p>
-                                                    Some stories here...
+                                                    ITCC Unibadan...
                                             </p>
 
                                         </div>
                                         <div class="box-bottom">
-                                            <a href="#">More</a>
+                                            <a href="https://ui.edu.ng/aboutitcc" target="_blank">Learn more</a>
                                         </div>
                                     </div>
                                 </div>
@@ -138,12 +138,12 @@
                                                 <i class="fa fa-question fa-3x"></i>
                                             </div>
                                             <p>
-                                                    Some stories here...
+                                                    Steps involved...
                                             </p>
 
                                         </div>
                                         <div class="box-bottom">
-                                            <a href="#">More</a>
+                                            <a href="views/how_to.php">Learn More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -155,12 +155,12 @@
                                                 <i class="fa fa-edit fa-3x"></i>
                                             </div>
                                             <p>
-                                                    Some stories here...
+                                                    Simplicity...
                                             </p>
 
                                         </div>
                                         <div class="box-bottom">
-                                            <a href="#">More</a>
+                                            <a href="#">Learn More</a>
                                         </div>
                                     </div>
                                 </div>

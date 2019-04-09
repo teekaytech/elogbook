@@ -46,7 +46,7 @@ class PDF extends FPDF
     }
 }
 
-// Instanciation of inherited class
+// Instantiation of inherited class
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
@@ -60,8 +60,15 @@ $pdf->SetFont('Times','',11);
 $pdf->Ln(3);
 $pdf->Write(6,'Matriculation Number:  '.$_SESSION['matric']);
 //fetching image
-$imgUrl = '../std_pass/'.$student->fetch_student_passport($_SESSION['matric']);
-$pdf->Image($imgUrl,150,50,35,40);
+$myad = $student->fetch_student_passport($_SESSION['matric']);
+//var_dump($myad);
+foreach ($myad as $item) {
+    if ($item['stud_id'] == $_SESSION['matric']) {
+        $imgUrl = '../std_pass/'.$item['passport'];
+        $pdf->Image($imgUrl,150,50,35,40);
+        break;
+    }
+}
 $pdf->Ln(7);
 $pdf->Write(6,'Full Name:  '.$_SESSION['name']);
 $pdf->Ln(7);

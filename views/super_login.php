@@ -21,9 +21,9 @@ if (isset($_POST['login'])) {
 		if($super->super_login($uname, $pass))
 		{
       		$login_status = true;
-      		$message = "You have been suucessfully logged in to your dashboard";
+      		$message = "You have been successfully logged in to your dashboard";
       		$url = "super_dboard.php";
-      		header("Refresh: 1; URL='$url'");
+      		header("Refresh: 5; URL='$url'");
     	}else
     	{
       		$message = "Invalid username or password";

@@ -64,25 +64,31 @@ $stud_status = false;
             $stud_status = true;
             ?><table><col width="0.1%"><col width="0.9%"><?php
                 foreach ($student_details as $index) {
-                    $full_name = $index['stud_lname'].' '.$index['stud_fname'].' '.$index['stud_mname']; ?>
-                    <tr>
-                        <td>Name:</td>
-                        <td><b><?php echo $full_name; ?></b></td>
-                    </tr>
-                    <tr>
-                        <td>Level:</td>
-                        <td><?php echo $index['stud_level']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>IT Commencement Date:</td>
-                        <td><?php echo $index['it_date']; ?></td>
-                    </tr>
-                    <tr>
-                        <td>IT Duration:</td>
-                        <td><?php echo $index['stud_it_duration'] . ' Months'; ?></td>
-                    </tr>
-                <?php }
-                echo '</table>';
+                    if ($index['SUPERVISORsuper_id'] == $_SESSION['super_id']) {
+                        $full_name = $index['stud_lname'] . ' ' . $index['stud_fname'] . ' ' . $index['stud_mname']; ?>
+                        <tr>
+                            <td>Name:</td>
+                            <td><b><?php echo $full_name; ?></b></td>
+                        </tr>
+                        <tr>
+                            <td>Level:</td>
+                            <td><?php echo $index['stud_level']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>IT Commencement Date:</td>
+                            <td><?php echo $index['it_date']; ?></td>
+                        </tr>
+                        <tr>
+                            <td>IT Duration:</td>
+                            <td><?php echo $index['stud_it_duration'] . ' Months'; ?></td>
+                        </tr>
+                        <?php
+                        echo '</table>';
+                    } else { ?>
+                        <script type="text/javascript"> alert('You did not register any student with that matric number!');
+                            window.location = "super_assess.php"; </script><?php
+                    }
+                }
                 }
                 //processing report details
                 echo '<p style="color:#ffffff; padding-left:10px; background-color:#900000;">Daily Report Details</p>';
@@ -191,7 +197,7 @@ $stud_status = false;
                     </table><br>
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" role="form" class="contactForm">
                         <div class="form-group">
-                            <textarea cols="50" rows="5" NAME="comment" placeholder="<?php if ($_SESSION['status'] == 1) {
+                            <textarea cols="50" rows="5" NAME="comment" placeholder=" <?php if ($_SESSION['status'] == 1) {
                                 echo 'Institution-based supervisor\'s comments';
                             } else {
                                 echo 'Industry-based supervisor\'s comments';

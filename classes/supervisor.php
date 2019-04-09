@@ -81,7 +81,7 @@ class Supervisor {
     public function fetch_super_org($org_id) {
         try
         {
-            $this->stmt = $this->handle->prepare("SELECT `org_name` FROM `organization` JOIN `supervisor` WHERE `organization`.`org_id` = :org_id");
+            $this->stmt = $this->handle->prepare("SELECT `org_name` FROM `organization` JOIN `supervisor` WHERE `organization`.`org_id` =:org_id");
             $this->stmt->execute(array('org_id'=>$org_id));
             $user = $this->stmt->fetchAll();
             $output = "";
@@ -102,10 +102,10 @@ class Supervisor {
             $this->stmt = $this->handle->prepare("SELECT `super_status` FROM `supervisor` WHERE `super_status` = :status");
             $this->stmt->execute(array('status'=>$status));
             $user = $this->stmt->fetchAll();
-            $output = "Industry-based";
+            $output = "Institution-based";
             foreach ($user as $key => $value) {
             	if ($value==0) {
-            		$output = "Institution-based";
+            		$output = "Industry-based";
             	}
             }
             return $output;

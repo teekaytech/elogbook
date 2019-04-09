@@ -21,9 +21,9 @@ if (isset($_POST['login'])) {
 		if($admin->login_admin($uname, $pass))
 		{
       		$login_status = true;
-      		$message = "You have been suucessfully logged in to your dashboard";
+      		$message = "You have been successfully logged in to your dashboard";
       		$url = "admin_dashboard.php";
-      		header("Refresh:2; URL='$url'");
+      		header("Refresh:7; URL='$url'");
     	}else
     	{
       		$message = "Invalid username or password";

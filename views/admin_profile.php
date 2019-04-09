@@ -64,7 +64,7 @@ main_header();
                     <div>
                         <p style="color: red;">Note: Only fields with (*) can be updated!</p>
                         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" role="form" class="contactForm">
-                            <div class="form-group"><br>
+                            <div class="form-group">
                                 <?php
                                 try {
                                     $admin_profile = $admin->fetch_admin_details();
@@ -75,7 +75,7 @@ main_header();
                                             <input class="form-control" value="Full Name: <?php echo $ad['admin_lname'].' '.$ad['admin_fname'].' '.$ad['admin_mname']; ?>" readonly/><br>
                                             <input class="form-control" type="text" name="username" value="Username: <?php echo $ad['admin_uname']; ?>" readonly/>
                                             <label style="color: red;"><b>Designation(*)</b></label>
-                                            <input class="form-control" name="desig" value="<?php echo $ad['admin_desig']; ?>"/><br>
+                                            <input class="form-control" name="desig" value="<?php echo $ad['admin_desig']; ?>"/>
                                             <label style="color: red;"><b>*Current Password</b></label>
                                             <input class="form-control" type="password" name="old_pwd" placeholder="Current Password" />
                                             <label style="color: red;"><b>* New password</b></label>
