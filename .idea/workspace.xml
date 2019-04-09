@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="898df390-2803-4e03-a0d7-4f41a24601af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/how_to.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/inspection_form.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/supervisor.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/supervisor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/admin_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin_header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin_dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin_dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin_dwld.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin_dwld.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin_login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin_login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/end_of_siwes.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/end_of_siwes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/features.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/features.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/register_stud.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/register_stud.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/register_super.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/register_super.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/super_assess.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/super_assess.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/super_dboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/super_dboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/super_endorse.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/super_endorse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/super_login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/super_login.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classes/supervisor.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+            <state relative-caret-position="13">
+              <caret line="69" column="98" lean-forward="true" selection-start-line="69" selection-start-column="98" selection-end-line="69" selection-end-column="98" />
             </state>
           </provider>
         </entry>
@@ -158,8 +139,22 @@
       <find>obj</find>
     </findStrings>
   </component>
+  <component name="FrameworkCommandLineHistory">
+    <commandsHistory>
+      <command text="git status" />
+      <command text="git add *.*" />
+      <command text="git status" />
+      <command text="git status s" />
+      <command text="git commit -m &quot;Update as at 9th April, 2019&quot;" />
+      <command text="git log" />
+      <command text="git push origin master" />
+    </commandsHistory>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -340,11 +335,12 @@
       <workItem from="1553035887441" duration="635000" />
       <workItem from="1554480130862" duration="286000" />
       <workItem from="1554739018487" duration="671000" />
+      <workItem from="1554797311406" duration="842000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="345563000" />
+    <option name="totallyTimeSpent" value="346405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -352,6 +348,7 @@
       <window_info content_ui="combo" id="Project" order="0" weight="0.22012103" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25340393" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32980332" />
+      <window_info active="true" anchor="bottom" id="Command Line Tools Console" visible="true" weight="0.8679549" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -361,7 +358,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32850242" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32970452" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -372,6 +369,32 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/xml/xml.php">
@@ -666,8 +689,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classes/supervisor.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+        <state relative-caret-position="13">
+          <caret line="69" column="98" lean-forward="true" selection-start-line="69" selection-start-column="98" selection-end-line="69" selection-end-column="98" />
         </state>
       </provider>
     </entry>
