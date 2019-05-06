@@ -23,7 +23,7 @@ if (isset($_POST['login'])) {
       		$login_status = true;
       		$message = "You have been successfully logged in to your dashboard";
       		$url = "admin_dashboard.php";
-      		header("Refresh:7; URL='$url'");
+      		header("Refresh:3; URL='$url'");
     	}else
     	{
       		$message = "Invalid username or password";
