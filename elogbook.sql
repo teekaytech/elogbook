@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 01, 2019 at 04:08 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Host: 127.0.0.1:3306
+-- Generation Time: Feb 04, 2020 at 10:40 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,14 +28,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
   `admin_id` varchar(30) NOT NULL,
   `admin_lname` varchar(30) NOT NULL,
   `admin_fname` varchar(30) NOT NULL,
   `admin_mname` varchar(30) DEFAULT NULL,
   `admin_uname` varchar(30) NOT NULL,
   `admin_desig` varchar(50) NOT NULL,
-  `admin_pswd` varchar(30) NOT NULL
+  `admin_pswd` varchar(30) NOT NULL,
+  PRIMARY KEY (`admin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -51,14 +53,18 @@ INSERT INTO `admin` (`admin_id`, `admin_lname`, `admin_fname`, `admin_mname`, `a
 -- Table structure for table `approval`
 --
 
-CREATE TABLE `approval` (
-  `approv_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `approval`;
+CREATE TABLE IF NOT EXISTS `approval` (
+  `approv_id` int(10) NOT NULL AUTO_INCREMENT,
   `approv_date` date NOT NULL,
   `approv_comment` varchar(160) NOT NULL,
   `approv_status` varchar(2) NOT NULL,
   `rpt_id` int(250) NOT NULL,
-  `super_id` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `super_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`approv_id`),
+  KEY `approval` (`rpt_id`),
+  KEY `appr` (`super_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `approval`
@@ -110,14 +116,18 @@ INSERT INTO `approval` (`approv_id`, `approv_date`, `approv_comment`, `approv_st
 -- Table structure for table `assessment`
 --
 
-CREATE TABLE `assessment` (
+DROP TABLE IF EXISTS `assessment`;
+CREATE TABLE IF NOT EXISTS `assessment` (
   `SUPERVISORsuper_id` varchar(30) NOT NULL,
   `STUDENTstud_id` varchar(6) NOT NULL,
-  `assess_id` int(10) NOT NULL,
+  `assess_id` int(10) NOT NULL AUTO_INCREMENT,
   `assess_date` date NOT NULL,
   `assess_comment` varchar(160) DEFAULT NULL,
-  `assess_grade` varchar(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `assess_grade` varchar(3) NOT NULL,
+  PRIMARY KEY (`assess_id`),
+  KEY `assesses` (`SUPERVISORsuper_id`),
+  KEY `accesses` (`STUDENTstud_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assessment`
@@ -136,11 +146,14 @@ INSERT INTO `assessment` (`SUPERVISORsuper_id`, `STUDENTstud_id`, `assess_id`, `
 -- Table structure for table `attachment`
 --
 
-CREATE TABLE `attachment` (
-  `attach_id` int(10) NOT NULL,
+DROP TABLE IF EXISTS `attachment`;
+CREATE TABLE IF NOT EXISTS `attachment` (
+  `attach_id` int(10) NOT NULL AUTO_INCREMENT,
   `attach_file` varchar(100) NOT NULL,
-  `DAILY_REPORTrpt_id` int(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `DAILY_REPORTrpt_id` int(250) NOT NULL,
+  PRIMARY KEY (`attach_id`),
+  KEY `contains` (`DAILY_REPORTrpt_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `attachment`
@@ -152,7 +165,8 @@ INSERT INTO `attachment` (`attach_id`, `attach_file`, `DAILY_REPORTrpt_id`) VALU
 (3, '687000.jpg', 4),
 (4, '200193131-001[2].jpg', 37),
 (5, '875364-001[2].jpg', 45),
-(6, 'moderncertificateborderacbkdgxdi.jpg', 46);
+(6, 'moderncertificateborderacbkdgxdi.jpg', 46),
+(7, 'IMG-20190220-WA0007.jpg', 49);
 
 -- --------------------------------------------------------
 
@@ -160,63 +174,69 @@ INSERT INTO `attachment` (`attach_id`, `attach_file`, `DAILY_REPORTrpt_id`) VALU
 -- Table structure for table `daily_report`
 --
 
-CREATE TABLE `daily_report` (
-  `rpt_id` int(250) NOT NULL,
-  `rpt_date` date NOT NULL,
-  `time` time(6) NOT NULL,
+DROP TABLE IF EXISTS `daily_report`;
+CREATE TABLE IF NOT EXISTS `daily_report` (
+  `rpt_id` int(250) NOT NULL AUTO_INCREMENT,
+  `rpt_date` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
   `week` varchar(10) NOT NULL,
   `rpt_content` varchar(200) NOT NULL,
   `stud_id` varchar(6) NOT NULL,
   `ind_appr_status` enum('0','1') NOT NULL DEFAULT '0',
-  `inst_appr_status` enum('0','1') NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `inst_appr_status` enum('0','1') NOT NULL DEFAULT '0',
+  PRIMARY KEY (`rpt_id`),
+  KEY `daily_report` (`stud_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `daily_report`
 --
 
 INSERT INTO `daily_report` (`rpt_id`, `rpt_date`, `time`, `week`, `rpt_content`, `stud_id`, `ind_appr_status`, `inst_appr_status`) VALUES
-(1, '2019-01-11', '21:35:19.000000', '1', 'Introduction to the company', '192223', '1', '1'),
-(2, '2019-01-11', '21:40:14.000000', '1', 'Introduction to Enzymes', '192439', '1', '1'),
-(3, '2019-01-12', '08:43:52.000000', '1', 'International Campagne Committee ', '192439', '1', '1'),
-(4, '2019-01-12', '21:17:45.000000', '1', 'Introduction to Operating Systems', '192223', '1', '1'),
-(5, '2018-12-21', '21:35:19.000000', '1', 'CMS', '192439', '1', '1'),
-(6, '2018-12-22', '20:00:00.000000', '1', 'CMS Contd', '192439', '1', '1'),
-(7, '2018-12-23', '20:01:00.000000', '1', 'Intro', '192439', '1', '1'),
-(8, '2018-12-24', '20:02:00.000000', '1', 'Duction', '192439', '1', '1'),
-(9, '2018-12-25', '20:03:00.000000', '1', 'Taofeek', '192439', '1', '1'),
-(10, '2018-12-26', '20:04:00.000000', '1', 'Taofeek', '192439', '1', '1'),
-(11, '2018-12-27', '20:05:00.000000', '1', 'Taofeek', '192439', '1', '1'),
-(12, '2018-12-28', '20:06:00.000000', '2', 'Taofeek', '192439', '1', '1'),
-(13, '2018-12-29', '20:07:00.000000', '2', 'Taofeek', '192439', '1', '1'),
-(14, '2018-12-30', '20:08:00.000000', '2', 'Taofeek', '192439', '1', '1'),
-(15, '2018-12-31', '20:09:00.000000', '2', 'Taofeek', '192439', '1', '1'),
-(16, '2019-01-01', '20:10:00.000000', '2', 'Taofeek', '192439', '1', '1'),
-(17, '2019-01-02', '20:11:00.000000', '2', 'Taofeek', '192439', '1', '1'),
-(18, '2019-01-03', '20:12:00.000000', '2', 'Taofeek', '192439', '1', '1'),
-(19, '2019-01-04', '20:13:00.000000', '3', 'Taofeek', '192439', '1', '1'),
-(20, '2019-01-05', '20:14:00.000000', '3', 'Taofeek', '192439', '1', '1'),
-(21, '2019-01-06', '20:15:00.000000', '3', 'Taofeek', '192439', '1', '1'),
-(22, '2019-01-07', '20:16:00.000000', '3', 'Taofeek', '192439', '1', '1'),
-(23, '2019-01-08', '20:17:00.000000', '3', 'Taofeek', '192439', '1', '1'),
-(24, '2019-01-09', '20:18:00.000000', '3', 'Taofeek', '192439', '1', '1'),
-(25, '2019-01-10', '20:19:00.000000', '3', 'Taofeek', '192439', '1', '1'),
-(26, '2019-01-11', '20:20:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(27, '2019-01-12', '20:21:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(28, '2019-01-13', '20:22:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(29, '2019-01-14', '20:23:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(30, '2019-01-15', '20:24:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(31, '2019-01-16', '20:25:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(32, '2019-01-17', '20:26:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(33, '2019-01-18', '20:27:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(34, '2019-01-19', '20:28:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(35, '2019-01-20', '20:29:00.000000', '4', 'Taofeek', '192439', '1', '1'),
-(37, '2019-01-22', '23:17:58.000000', '4', 'Defense', '192439', '1', '1'),
-(44, '2019-01-24', '17:38:46.000000', '2', 'aiofjewioj', '192223', '1', '1'),
-(45, '2019-01-25', '11:02:52.000000', '2', 'askljfijw', '192223', '1', '1'),
-(46, '2019-02-25', '17:03:55.000000', '1', '', '192443', '0', '0'),
-(47, '2019-02-26', '00:08:27.000000', '1', 'Introduction to CISCO', '192443', '0', '0'),
-(48, '2019-02-28', '09:21:17.000000', '1', 'Introducion', '192541', '0', '0');
+(1, '2019-01-11', '21:35:19', '1', 'Introduction to the company', '192223', '1', '1'),
+(2, '2019-01-11', '21:40:14', '1', 'Introduction to Enzymes', '192439', '1', '1'),
+(3, '2019-01-12', '08:43:52', '1', 'International Campagne Committee ', '192439', '1', '1'),
+(4, '2019-01-12', '21:17:45', '1', 'Introduction to Operating Systems', '192223', '1', '1'),
+(5, '2018-12-21', '21:35:19', '1', 'CMS', '192439', '1', '1'),
+(6, '2018-12-22', '20:00:00', '1', 'CMS Contd', '192439', '1', '1'),
+(7, '2018-12-23', '20:01:00', '1', 'Intro', '192439', '1', '1'),
+(8, '2018-12-24', '20:02:00', '1', 'Duction', '192439', '1', '1'),
+(9, '2018-12-25', '20:03:00', '1', 'Taofeek', '192439', '1', '1'),
+(10, '2018-12-26', '20:04:00', '1', 'Taofeek', '192439', '1', '1'),
+(11, '2018-12-27', '20:05:00', '1', 'Taofeek', '192439', '1', '1'),
+(12, '2018-12-28', '20:06:00', '2', 'Taofeek', '192439', '1', '1'),
+(13, '2018-12-29', '20:07:00', '2', 'Taofeek', '192439', '1', '1'),
+(14, '2018-12-30', '20:08:00', '2', 'Taofeek', '192439', '1', '1'),
+(15, '2018-12-31', '20:09:00', '2', 'Taofeek', '192439', '1', '1'),
+(16, '2019-01-01', '20:10:00', '2', 'Taofeek', '192439', '1', '1'),
+(17, '2019-01-02', '20:11:00', '2', 'Taofeek', '192439', '1', '1'),
+(18, '2019-01-03', '20:12:00', '2', 'Taofeek', '192439', '1', '1'),
+(19, '2019-01-04', '20:13:00', '3', 'Taofeek', '192439', '1', '1'),
+(20, '2019-01-05', '20:14:00', '3', 'Taofeek', '192439', '1', '1'),
+(21, '2019-01-06', '20:15:00', '3', 'Taofeek', '192439', '1', '1'),
+(22, '2019-01-07', '20:16:00', '3', 'Taofeek', '192439', '1', '1'),
+(23, '2019-01-08', '20:17:00', '3', 'Taofeek', '192439', '1', '1'),
+(24, '2019-01-09', '20:18:00', '3', 'Taofeek', '192439', '1', '1'),
+(25, '2019-01-10', '20:19:00', '3', 'Taofeek', '192439', '1', '1'),
+(26, '2019-01-11', '20:20:00', '4', 'Taofeek', '192439', '1', '1'),
+(27, '2019-01-12', '20:21:00', '4', 'Taofeek', '192439', '1', '1'),
+(28, '2019-01-13', '20:22:00', '4', 'Taofeek', '192439', '1', '1'),
+(29, '2019-01-14', '20:23:00', '4', 'Taofeek', '192439', '1', '1'),
+(30, '2019-01-15', '20:24:00', '4', 'Taofeek', '192439', '1', '1'),
+(31, '2019-01-16', '20:25:00', '4', 'Taofeek', '192439', '1', '1'),
+(32, '2019-01-17', '20:26:00', '4', 'Taofeek', '192439', '1', '1'),
+(33, '2019-01-18', '20:27:00', '4', 'Taofeek', '192439', '1', '1'),
+(34, '2019-01-19', '20:28:00', '4', 'Taofeek', '192439', '1', '1'),
+(35, '2019-01-20', '20:29:00', '4', 'Taofeek', '192439', '1', '1'),
+(37, '2019-01-22', '23:17:58', '4', 'Defense', '192439', '1', '1'),
+(44, '2019-01-24', '17:38:46', '2', 'aiofjewioj', '192223', '1', '1'),
+(45, '2019-01-25', '11:02:52', '2', 'askljfijw', '192223', '1', '1'),
+(46, '2019-02-25', '17:03:55', '1', '', '192443', '0', '0'),
+(47, '2019-02-26', '00:08:27', '1', 'Introduction to CISCO', '192443', '0', '0'),
+(48, '2019-02-28', '09:21:17', '1', 'Introducion', '192541', '0', '0'),
+(49, '2019-04-02', '13:11:46', '1', 'Installation of New Desktop Computers.\r\nIntroduction to Software Documentation', '123321', '0', '0'),
+(50, '2019-04-04', '08:57:53', '5', 'Installation of Wired Connection to the North part of Senate building', '111111', '0', '0'),
+(51, '2019-04-23', '05:24:27', '14', '', '192223', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -224,11 +244,14 @@ INSERT INTO `daily_report` (`rpt_id`, `rpt_date`, `time`, `week`, `rpt_content`,
 -- Table structure for table `department`
 --
 
-CREATE TABLE `department` (
-  `dept_id` int(5) NOT NULL,
+DROP TABLE IF EXISTS `department`;
+CREATE TABLE IF NOT EXISTS `department` (
+  `dept_id` int(5) NOT NULL AUTO_INCREMENT,
   `dept_desc` varchar(50) NOT NULL,
-  `FACULTYfac_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `FACULTYfac_id` int(10) NOT NULL,
+  PRIMARY KEY (`dept_id`),
+  KEY `has` (`FACULTYfac_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `department`
@@ -370,10 +393,13 @@ INSERT INTO `department` (`dept_id`, `dept_desc`, `FACULTYfac_id`) VALUES
 -- Table structure for table `end_of_siwes`
 --
 
-CREATE TABLE `end_of_siwes` (
-  `id` int(200) NOT NULL,
+DROP TABLE IF EXISTS `end_of_siwes`;
+CREATE TABLE IF NOT EXISTS `end_of_siwes` (
+  `id` int(200) NOT NULL AUTO_INCREMENT,
   `file_name` varchar(50) NOT NULL,
-  `stud_id` varchar(6) NOT NULL
+  `stud_id` varchar(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `end_of_siwes` (`stud_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -382,10 +408,12 @@ CREATE TABLE `end_of_siwes` (
 -- Table structure for table `faculty`
 --
 
-CREATE TABLE `faculty` (
-  `fac_id` int(10) NOT NULL,
-  `fac_desc` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `faculty`;
+CREATE TABLE IF NOT EXISTS `faculty` (
+  `fac_id` int(10) NOT NULL AUTO_INCREMENT,
+  `fac_desc` varchar(50) NOT NULL,
+  PRIMARY KEY (`fac_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `faculty`
@@ -427,13 +455,17 @@ INSERT INTO `faculty` (`fac_id`, `fac_desc`) VALUES
 -- Table structure for table `inspection`
 --
 
-CREATE TABLE `inspection` (
-  `inspection_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `inspection`;
+CREATE TABLE IF NOT EXISTS `inspection` (
+  `inspection_id` int(11) NOT NULL AUTO_INCREMENT,
   `inspection_date` date NOT NULL,
   `comments` varchar(200) NOT NULL,
   `remarks` varchar(50) NOT NULL,
   `super_id` varchar(30) NOT NULL,
-  `stud_id` varchar(6) NOT NULL
+  `stud_id` varchar(6) NOT NULL,
+  PRIMARY KEY (`inspection_id`),
+  KEY `inspection` (`super_id`),
+  KEY `inspection_stud` (`stud_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -442,14 +474,16 @@ CREATE TABLE `inspection` (
 -- Table structure for table `organization`
 --
 
-CREATE TABLE `organization` (
-  `org_id` int(30) NOT NULL,
+DROP TABLE IF EXISTS `organization`;
+CREATE TABLE IF NOT EXISTS `organization` (
+  `org_id` int(30) NOT NULL AUTO_INCREMENT,
   `org_name` varchar(60) NOT NULL,
   `org_address` varchar(50) NOT NULL,
   `org_city` varchar(30) NOT NULL,
   `org_state` varchar(30) NOT NULL,
-  `org_contact_phone` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `org_contact_phone` varchar(11) NOT NULL,
+  PRIMARY KEY (`org_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `organization`
@@ -469,7 +503,8 @@ INSERT INTO `organization` (`org_id`, `org_name`, `org_address`, `org_city`, `or
 -- Table structure for table `student`
 --
 
-CREATE TABLE `student` (
+DROP TABLE IF EXISTS `student`;
+CREATE TABLE IF NOT EXISTS `student` (
   `stud_id` varchar(6) NOT NULL,
   `stud_lname` varchar(30) NOT NULL,
   `stud_fname` varchar(30) NOT NULL,
@@ -482,7 +517,11 @@ CREATE TABLE `student` (
   `SUPERVISORsuper_id` varchar(30) NOT NULL,
   `DEPARTMENTdept_id` int(5) NOT NULL,
   `org_id` int(30) NOT NULL,
-  `it_date` date NOT NULL
+  `it_date` date NOT NULL,
+  PRIMARY KEY (`stud_id`),
+  KEY `registers` (`SUPERVISORsuper_id`),
+  KEY `belongs` (`DEPARTMENTdept_id`),
+  KEY `student` (`org_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -491,6 +530,7 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`stud_id`, `stud_lname`, `stud_fname`, `stud_mname`, `stud_nok`, `stud_level`, `session`, `stud_it_duration`, `stud_pswd`, `SUPERVISORsuper_id`, `DEPARTMENTdept_id`, `org_id`, `it_date`) VALUES
 ('111111', 'Samuel', 'Gideon', 'Okpara', 'Mr. Okpara', '300', '2017/2018', 2, 'password', 'MY/SU/2019', 10, 1, '2019-02-25'),
+('123321', 'Babatunde', 'Olowu', 'Ayinde', 'Mr. Babatunde', '300', '2017/2018', 3, 'password', 'COMUI/1993', 106, 4, '2019-04-01'),
 ('186755', 'Wahab', 'Azeez', 'Adigun', 'Oluwole', '300', '2018/2019', 1, 'password', '10/1991/8', 2, 6, '2019-01-23'),
 ('191900', 'Kolade', 'Dimeji', 'Alani', 'Adeola', '300', '2017/2018', 6, '10101010', 'COMUI/1993', 106, 4, '2019-02-20'),
 ('191919', 'sam', 'wole', 'okpara', 'mr. okpara', '300', '2017/2018', 3, 'password', 'MY/SU/2019', 2, 4, '2019-01-28'),
@@ -507,11 +547,14 @@ INSERT INTO `student` (`stud_id`, `stud_lname`, `stud_fname`, `stud_mname`, `stu
 -- Table structure for table `stud_passport`
 --
 
-CREATE TABLE `stud_passport` (
-  `id` int(100) NOT NULL,
+DROP TABLE IF EXISTS `stud_passport`;
+CREATE TABLE IF NOT EXISTS `stud_passport` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
   `stud_id` varchar(6) NOT NULL,
-  `passport` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `passport` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `stud_passport` (`stud_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `stud_passport`
@@ -525,7 +568,8 @@ INSERT INTO `stud_passport` (`id`, `stud_id`, `passport`) VALUES
 (5, '192900', 'passInec.jpg'),
 (6, '186755', 'topass.jpg'),
 (7, '999999', 'army.jpg'),
-(8, '191919', 'download.jpg');
+(8, '191919', 'download.jpg'),
+(9, '123321', '12.jpg');
 
 -- --------------------------------------------------------
 
@@ -533,7 +577,8 @@ INSERT INTO `stud_passport` (`id`, `stud_id`, `passport`) VALUES
 -- Table structure for table `supervisor`
 --
 
-CREATE TABLE `supervisor` (
+DROP TABLE IF EXISTS `supervisor`;
+CREATE TABLE IF NOT EXISTS `supervisor` (
   `super_id` varchar(30) NOT NULL,
   `super_lname` varchar(30) NOT NULL,
   `super_fname` varchar(30) NOT NULL,
@@ -545,7 +590,10 @@ CREATE TABLE `supervisor` (
   `email` varchar(50) NOT NULL,
   `super_pswd` varchar(30) NOT NULL,
   `org_id` int(30) NOT NULL,
-  `ADMINadmin_id` varchar(30) NOT NULL
+  `ADMINadmin_id` varchar(30) NOT NULL,
+  PRIMARY KEY (`super_id`),
+  KEY `register` (`ADMINadmin_id`),
+  KEY `supervisor` (`org_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -573,10 +621,12 @@ INSERT INTO `supervisor` (`super_id`, `super_lname`, `super_fname`, `super_mname
 -- Table structure for table `supervisor_type`
 --
 
-CREATE TABLE `supervisor_type` (
-  `type_id` int(11) NOT NULL,
-  `type` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `supervisor_type`;
+CREATE TABLE IF NOT EXISTS `supervisor_type` (
+  `type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) NOT NULL,
+  PRIMARY KEY (`type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `supervisor_type`
@@ -586,169 +636,6 @@ INSERT INTO `supervisor_type` (`type_id`, `type`) VALUES
 (0, 'Industry-based'),
 (1, 'Institution-based');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`admin_id`);
-
---
--- Indexes for table `approval`
---
-ALTER TABLE `approval`
-  ADD PRIMARY KEY (`approv_id`),
-  ADD KEY `approval` (`rpt_id`),
-  ADD KEY `appr` (`super_id`);
-
---
--- Indexes for table `assessment`
---
-ALTER TABLE `assessment`
-  ADD PRIMARY KEY (`assess_id`),
-  ADD KEY `assesses` (`SUPERVISORsuper_id`),
-  ADD KEY `accesses` (`STUDENTstud_id`);
-
---
--- Indexes for table `attachment`
---
-ALTER TABLE `attachment`
-  ADD PRIMARY KEY (`attach_id`),
-  ADD KEY `contains` (`DAILY_REPORTrpt_id`);
-
---
--- Indexes for table `daily_report`
---
-ALTER TABLE `daily_report`
-  ADD PRIMARY KEY (`rpt_id`),
-  ADD KEY `daily_report` (`stud_id`);
-
---
--- Indexes for table `department`
---
-ALTER TABLE `department`
-  ADD PRIMARY KEY (`dept_id`),
-  ADD KEY `has` (`FACULTYfac_id`);
-
---
--- Indexes for table `end_of_siwes`
---
-ALTER TABLE `end_of_siwes`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `end_of_siwes` (`stud_id`);
-
---
--- Indexes for table `faculty`
---
-ALTER TABLE `faculty`
-  ADD PRIMARY KEY (`fac_id`);
-
---
--- Indexes for table `inspection`
---
-ALTER TABLE `inspection`
-  ADD PRIMARY KEY (`inspection_id`),
-  ADD KEY `inspection` (`super_id`),
-  ADD KEY `inspection_stud` (`stud_id`);
-
---
--- Indexes for table `organization`
---
-ALTER TABLE `organization`
-  ADD PRIMARY KEY (`org_id`);
-
---
--- Indexes for table `student`
---
-ALTER TABLE `student`
-  ADD PRIMARY KEY (`stud_id`),
-  ADD KEY `registers` (`SUPERVISORsuper_id`),
-  ADD KEY `belongs` (`DEPARTMENTdept_id`),
-  ADD KEY `student` (`org_id`);
-
---
--- Indexes for table `stud_passport`
---
-ALTER TABLE `stud_passport`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `stud_passport` (`stud_id`);
-
---
--- Indexes for table `supervisor`
---
-ALTER TABLE `supervisor`
-  ADD PRIMARY KEY (`super_id`),
-  ADD KEY `register` (`ADMINadmin_id`),
-  ADD KEY `supervisor` (`org_id`);
-
---
--- Indexes for table `supervisor_type`
---
-ALTER TABLE `supervisor_type`
-  ADD PRIMARY KEY (`type_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `approval`
---
-ALTER TABLE `approval`
-  MODIFY `approv_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
---
--- AUTO_INCREMENT for table `assessment`
---
-ALTER TABLE `assessment`
-  MODIFY `assess_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `attachment`
---
-ALTER TABLE `attachment`
-  MODIFY `attach_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `daily_report`
---
-ALTER TABLE `daily_report`
-  MODIFY `rpt_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
---
--- AUTO_INCREMENT for table `department`
---
-ALTER TABLE `department`
-  MODIFY `dept_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
---
--- AUTO_INCREMENT for table `end_of_siwes`
---
-ALTER TABLE `end_of_siwes`
-  MODIFY `id` int(200) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `faculty`
---
-ALTER TABLE `faculty`
-  MODIFY `fac_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
---
--- AUTO_INCREMENT for table `inspection`
---
-ALTER TABLE `inspection`
-  MODIFY `inspection_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `organization`
---
-ALTER TABLE `organization`
-  MODIFY `org_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `stud_passport`
---
-ALTER TABLE `stud_passport`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `supervisor_type`
---
-ALTER TABLE `supervisor_type`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
