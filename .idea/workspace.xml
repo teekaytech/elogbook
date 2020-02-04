@@ -3,38 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="898df390-2803-4e03-a0d7-4f41a24601af" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/js/npm.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contactform/contactform.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/elogbook.sql" beforeDir="false" afterPath="$PROJECT_DIR$/elogbook.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/customicon/Icons.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/customicon/Icons.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fpdf/tutorial/calligra.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/animate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/custom.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/flexslider/jquery.flexslider.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/flexslider/setting.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/google-code-prettify/prettify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/jquery.easing.1.3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/jquery.fancybox-media.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/jquery.fancybox.pack.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/jquery.flexslider.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/portfolio/jquery.quicksand.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/portfolio/setting.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/quicksand/jquery.quicksand.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/quicksand/setting.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/validate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pdf/tutorial/calligra.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/translation/Tests/fixtures/empty.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/symfony/translation/Tests/fixtures/resources.ini" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -248,7 +217,7 @@
       <workItem from="1569266294714" duration="17000" />
       <workItem from="1569314032875" duration="1041000" />
       <workItem from="1580814426755" duration="1488000" />
-      <workItem from="1580816002238" duration="1499000" />
+      <workItem from="1580816002238" duration="1980000" />
     </task>
     <servers />
   </component>
