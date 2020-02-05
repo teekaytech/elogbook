@@ -6,7 +6,7 @@ class Admin {
 
 	public $handle;
 	public $stmt;
-	public $db_name = "elogbook";
+	public $db_name = "heroku_5b6c70553cd33d6";
 
 
 	public function __construct(){
@@ -16,10 +16,9 @@ class Admin {
 	public function dbEngine(){
 		try{
 		    $host = 'us-cdbr-iron-east-04.cleardb.net';
-		    $db_name = 'heroku_5b6c70553cd33d6';
 		    $username = 'b4f380863da188';
 		    $password = '93f73eff';
-			$this->handle = new PDO("mysql:host=$host;dbname=$db_name",$username,$password);
+			$this->handle = new PDO("mysql:host=$host;dbname=$this->db_name",$username,$password);
 				$this->handle->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 		}
 		catch(PDOException $e){
